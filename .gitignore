@@ -13,3 +13,5 @@
 .externalNativeBuild
 .cxx
 local.properties
+vcs.xml
+gradle.xml

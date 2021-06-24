@@ -1,6 +1,5 @@
 package com.dkjar.study.handle
 
-import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -90,27 +89,48 @@ class HandlerActivity :  BaseActivity() {
         mainHandler?.sendMessage(msg3)
     }
 
-
-    fun threadHandler(){
-        //handler 不放主线程中，不能收到消息.
-        Thread {
-
+    class MyThread : Thread() {
+        override fun run() {
+            LogUtils.v(LogUtils.HANDLER, "MyThread")
             //Can't create handler inside thread that has not called Looper.prepare()
             Looper.prepare() //如果不加这个
 
             val threadHandler: Handler = object : Handler() {
                 override fun handleMessage(msg: Message) {
                     super.handleMessage(msg)
-                    LogUtils.v(TAG, "threadHandler handleMessage")
+                    LogUtils.v(LogUtils.HANDLER, "threadHandler handleMessage")
 
                     Looper.myLooper()?.quitSafely() //需要退出，不然会一直有looper 存在
                 }
             }
 
+            val msg = Message.obtain()
+            msg.what = 1000
+            threadHandler.sendMessage(msg)
+
             Looper.loop()
-            threadHandler.sendMessage(Message.obtain())
+            //需要等到循环结束才到执行这一行
+            LogUtils.v(LogUtils.HANDLER, " if you want run to this line, please wait loop end ")
 
 
+        }
+    }
+
+    fun threadHandler(){
+
+        //handler 不放主线程中，不能收到消息.
+        MyThread().start()
+
+        Thread {
+
+            val thread2Handler: Handler = object : Handler(Looper.getMainLooper()) {
+                override fun handleMessage(msg: Message) {
+                    super.handleMessage(msg)
+                    LogUtils.v(LogUtils.HANDLER, "thread2Handler handleMessage")
+                }
+            }
+
+            thread2Handler.sendMessage(Message.obtain())
         }.start()
     }
 
