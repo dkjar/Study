@@ -9,13 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Study">
+
         <activity
-            android:name="com.dkjar.server.CommonActivity"
+            android:name=".CommonActivity"
             android:label="@string/title_activity_common"
-            android:theme="@style/Theme.Study.NoActionBar"></activity>
-        <activity android:name="com.dkjar.server.handle.HandlerActivity" />
+            android:theme="@style/Theme.Study.NoActionBar" />
+        <activity android:name=".handle.HandlerActivity" />
         <activity
-            android:name="com.dkjar.server.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.Study.NoActionBar">
             <intent-filter>
@@ -24,6 +25,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".UserService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.dkjar.server.userservice" />
+            </intent-filter>
+        </service>
 
     </application>
 

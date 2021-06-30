@@ -10,11 +10,11 @@
     tools:context=".FirstFragment">
 
     <Button
-        android:id="@+id/handleBtn"
+        android:id="@+id/addBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Handle Demo"  />
+        android:text="add user"  />
 
     <Button
         android:id="@+id/listBtn"
@@ -25,19 +25,4 @@
         android:text="List Demo"  />
 
 
-    <Button
-        android:id="@+id/addBtn"
-        android:layout_width="140dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:text="add user"  />
-
-    <Button
-        android:id="@+id/userListBtn"
-        android:layout_width="140dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:text=" user list"  />
 </LinearLayout>
